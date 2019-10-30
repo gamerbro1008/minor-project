@@ -4,4 +4,5 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+# default db
 connectionString = "db/db.db"
