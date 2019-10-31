@@ -35,7 +35,7 @@ def showIdOrg(id):
 def createOrg():
     if request.method == 'POST':
         content = request.json
-        if content != None and content['name'] != None:
+        if content != None and 'name' in content.keys():
             with sql.connect(dbUtil.connectionString) as conn:
                 try:
                     conn.execute(
@@ -44,13 +44,14 @@ def createOrg():
                     return Response(status=201)
                 except Exception:
                     return Exception
+    return abort(400)
 
 
 @module.route(baseUrl+'update/<id>', methods=['POST', 'GET'])
 def updateOrg(id):
     if request.method == 'POST':
         content = request.json
-        if content != None and content['name'] != None:
+        if content != None and 'name' in content.keys():
             with sql.connect(dbUtil.connectionString) as conn:
                 try:
                     conn.execute(
@@ -59,6 +60,7 @@ def updateOrg(id):
                     return Response(status=202)
                 except Exception:
                     return Exception
+    return abort(400)
 
 
 @module.route(baseUrl+'delete/<id>')

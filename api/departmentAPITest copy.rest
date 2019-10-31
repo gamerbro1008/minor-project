@@ -1,0 +1,28 @@
+POST /api/org/1/dept/create HTTP/1.1
+Host: 127.0.0.1:5000
+content-type: application/json
+
+{
+	"name":"admission",
+	"description":"baccha entry"
+}
+
+###
+
+POST /api/org/1/dept/update/1 HTTP/1.1
+Host: 127.0.0.1:5000
+content-type: application/json
+
+{
+	"name":"hospital",
+	"description":"baccha entry"
+}
+
+###
+
+GET /api/org/1/dept/delete/2 HTTP/1.1
+Host: 127.0.0.1:5000
+
+###
+
+GET http://127.0.0.1:5000/api/org/1/dept HTTP/1.1
