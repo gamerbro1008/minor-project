@@ -1,0 +1,29 @@
+POST /api/org/1/dept/1/act/create HTTP/1.1
+Host: 127.0.0.1:5000
+content-type: application/json
+
+{
+	"name":"document verification",
+	"description":"checking the authenticity of certificates"
+}
+
+###
+
+POST /api/org/1/dept/1/act/update/1 HTTP/1.1
+Host: 127.0.0.1:5000
+content-type: application/json
+
+{
+	"name":"form giving123",
+	"description":"form giving :)"
+}
+
+###
+
+GET /api/org/1/dept/1/act/delete/2 HTTP/1.1
+Host: 127.0.0.1:5000
+
+
+###
+
+GET http://127.0.0.1:5000/api/org/1/dept/1/act HTTP/1.1
