@@ -5,10 +5,13 @@ import db.dbUtil as dbUtil
 
 organisation = Blueprint("organisation", __name__)
 
+module = organisation
+
+
 # CRUD
 baseUrl = "/api/org/"
 
-@organisation.route(baseUrl)
+@module.route(baseUrl)
 def showAllOrg():
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
@@ -17,7 +20,7 @@ def showAllOrg():
         return Response(json.dumps(res), mimetype='application/json')
 
 
-@organisation.route(baseUrl+'<id>')
+@module.route(baseUrl+'<id>')
 def showIdOrg(id):
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
@@ -28,7 +31,7 @@ def showIdOrg(id):
         return dict(res)
 
 
-@organisation.route(baseUrl+'create', methods=['POST', 'GET'])
+@module.route(baseUrl+'create', methods=['POST', 'GET'])
 def createOrg():
     if request.method == 'POST':
         content = request.json
@@ -43,7 +46,7 @@ def createOrg():
                     return Exception
 
 
-@organisation.route(baseUrl+'update/<id>', methods=['POST', 'GET'])
+@module.route(baseUrl+'update/<id>', methods=['POST', 'GET'])
 def updateOrg(id):
     if request.method == 'POST':
         content = request.json
@@ -58,7 +61,7 @@ def updateOrg(id):
                     return Exception
 
 
-@organisation.route(baseUrl+'delete/<id>')
+@module.route(baseUrl+'delete/<id>')
 def deleteOrg(id):
     with sql.connect(dbUtil.connectionString) as conn:
         try:
