@@ -6,9 +6,9 @@ import db.dbUtil as dbUtil
 organisation = Blueprint("organisation", __name__)
 
 # CRUD
+baseUrl = "/api/org/"
 
-
-@organisation.route('/api/org/')
+@organisation.route(baseUrl)
 def showAllOrg():
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
@@ -17,7 +17,7 @@ def showAllOrg():
         return Response(json.dumps(res), mimetype='application/json')
 
 
-@organisation.route('/api/org/<id>')
+@organisation.route(baseUrl+'<id>')
 def showIdOrg(id):
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
@@ -28,7 +28,7 @@ def showIdOrg(id):
         return dict(res)
 
 
-@organisation.route('/api/org/create', methods=['POST', 'GET'])
+@organisation.route(baseUrl+'create', methods=['POST', 'GET'])
 def createOrg():
     if request.method == 'POST':
         content = request.json
@@ -43,7 +43,7 @@ def createOrg():
                     return Exception
 
 
-@organisation.route('/api/org/update/<id>', methods=['POST', 'GET'])
+@organisation.route(baseUrl+'update/<id>', methods=['POST', 'GET'])
 def updateOrg(id):
     if request.method == 'POST':
         content = request.json
@@ -58,7 +58,7 @@ def updateOrg(id):
                     return Exception
 
 
-@organisation.route('/api/org/delete/<id>')
+@organisation.route(baseUrl+'delete/<id>')
 def deleteOrg(id):
     with sql.connect(dbUtil.connectionString) as conn:
         try:

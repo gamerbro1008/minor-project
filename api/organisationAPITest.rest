@@ -8,17 +8,17 @@ content-type: application/json
 
 ###
 
-POST /api/org/update/2 HTTP/1.1
+POST /api/org/update/5 HTTP/1.1
 Host: 127.0.0.1:5000
 content-type: application/json
 
 {
-	"name":"astha"
+	"name":"hospital"
 }
 
 ###
 
-GET /api/org/delete/2 HTTP/1.1
+GET /api/org/delete/5 HTTP/1.1
 Host: 127.0.0.1:5000
 
 ###
