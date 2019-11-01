@@ -3,8 +3,8 @@ Host: 127.0.0.1:5000
 content-type: application/json
 
 {
-	"name":"document verification",
-	"description":"checking the authenticity of certificates"
+	"name":"Integration Testing",
+	"description":"Checking if a group of modules when combined together are stable and performing to expectation"
 }
 
 ###

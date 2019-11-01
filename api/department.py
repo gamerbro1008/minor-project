@@ -47,7 +47,7 @@ def create(orgId):
                     deptId = cursor.lastrowid
                     print(deptId)
                     conn.execute(
-                        f"INSERT INTO activity (name,orgId,deptId,description,isStart) VALUES ('{content['name']}',{orgId},{deptId},'Start of model',1)")
+                        f"INSERT INTO activity (name,orgId,deptId,description,isStart) VALUES ('Start',{orgId},{deptId},'Start of model',1)")
                     conn.commit()
                     return Response(status=201)
                 except Exception:

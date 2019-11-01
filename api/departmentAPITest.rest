@@ -3,8 +3,8 @@ Host: 127.0.0.1:5000
 content-type: application/json
 
 {
-	"name":"admissiontest",
-	"description":"baccha entry"
+	"name":"Research",
+	"description":"Deals with the process of making robots"
 }
 
 ###

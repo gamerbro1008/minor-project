@@ -15,7 +15,7 @@ baseUrl = "/api/org/<orgId>/dept/<deptId>/act/"
 def showAll(orgId,deptId):
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
-        cursor = conn.execute(f"SELECT * FROM activity WHERE orgId={orgId} AND deptId={deptId}")
+        cursor = conn.execute(f"SELECT * FROM activity WHERE orgId={orgId} AND deptId={deptId} order by name")
         res = cursor.fetchall()
         return Response(json.dumps(res), mimetype='application/json')
 
