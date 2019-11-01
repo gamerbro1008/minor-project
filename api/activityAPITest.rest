@@ -26,4 +26,4 @@ Host: 127.0.0.1:5000
 
 ###
 
-GET http://127.0.0.1:5000/api/org/1/dept/1/act HTTP/1.1
+GET http://127.0.0.1:5000/api/org/1/dept/1/act/ HTTP/1.1

@@ -11,6 +11,7 @@ module = department
 # CRUD
 baseUrl = "/api/org/<orgId>/dept/"
 
+
 @module.route(baseUrl)
 def showAll(orgId):
     with sql.connect(dbUtil.connectionString) as conn:
@@ -21,10 +22,11 @@ def showAll(orgId):
 
 
 @module.route(baseUrl+'<id>')
-def showId(orgId,id):
+def showId(orgId, id):
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
-        cursor = conn.execute(f"SELECT * FROM department WHERE id={id} AND orgId={orgId}")
+        cursor = conn.execute(
+            f"SELECT * FROM department WHERE id={id} AND orgId={orgId}")
         res = cursor.fetchone()
         if res == None:
             return abort(404)
@@ -38,17 +40,23 @@ def create(orgId):
         if content != None and "name" in content.keys() and 'description' in content.keys():
             with sql.connect(dbUtil.connectionString) as conn:
                 try:
-                    conn.execute(
+                    cursor = conn.execute(
                         f"INSERT INTO department (name,orgId,description) VALUES ('{content['name']}',{orgId},'{content['description']}')")
+                    conn.commit()
+
+                    deptId = cursor.lastrowid
+                    print(deptId)
+                    conn.execute(
+                        f"INSERT INTO activity (name,orgId,deptId,description,isStart) VALUES ('{content['name']}',{orgId},{deptId},'Start of model',1)")
                     conn.commit()
                     return Response(status=201)
                 except Exception:
-                    return Exception
+                    return str(Exception)
     return abort(400)
 
 
 @module.route(baseUrl+'update/<id>', methods=['POST', 'GET'])
-def update(orgId,id):
+def update(orgId, id):
     if request.method == 'POST':
         content = request.json
         if content != None and 'name' in content.keys() and 'description' in content.keys():
@@ -64,12 +72,12 @@ def update(orgId,id):
 
 
 @module.route(baseUrl+'delete/<id>')
-def delete(orgId,id):
+def delete(orgId, id):
     with sql.connect(dbUtil.connectionString) as conn:
         try:
             conn.execute(
                 f"DELETE FROM department WHERE id={id} AND orgId={orgId}")
             conn.commit()
-            return Response(status=200) # OK
+            return Response(status=200)  # OK
         except Exception:
             return Exception

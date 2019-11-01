@@ -3,7 +3,7 @@ Host: 127.0.0.1:5000
 content-type: application/json
 
 {
-	"name":"admission",
+	"name":"admissiontest",
 	"description":"baccha entry"
 }
 
