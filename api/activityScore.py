@@ -13,6 +13,9 @@ baseUrl = "/api/activityScore/act/<prevActId>/"
 
 @module.route(baseUrl)
 def showSuggested(prevActId):
+    if prevActId==0:
+        res = []
+        return Response(json.dumps(res), mimetype='application/json')
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
         cursor = conn.execute(f"SELECT * FROM activityScore WHERE prevActId={prevActId} ORDER BY score desc LIMIT 5")
