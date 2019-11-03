@@ -33,7 +33,7 @@ def showSuggested(orgId, deptId, prevActId):
             return Response(json.dumps(res), mimetype='application/json')
 
 
-@module.route(baseUrl+'<searchActName>')
+@module.route(baseUrl+'search/<searchActName>')
 def showAll(orgId, deptId, prevActId, searchActName):
     with sql.connect(dbUtil.connectionString) as conn:
         conn.row_factory = dbUtil.dict_factory
@@ -50,9 +50,11 @@ def showAll(orgId, deptId, prevActId, searchActName):
                 "suggestedActId": id,
                 "score": 0
             }
-            cursor = conn.execute(
-                f"SELECT * FROM activityScore WHERE prevActId={prevActId} AND suggestedActId={id}")
-            res = cursor.fetchone()
+            res = None
+            if str(prevActId)!='0':    
+                cursor = conn.execute(
+                    f"SELECT * FROM activityScore WHERE prevActId={prevActId} AND suggestedActId={id}")
+                res = cursor.fetchone()
             if res != None:
                 result.append(res)
             else:
