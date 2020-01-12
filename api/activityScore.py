@@ -28,7 +28,7 @@ def showSuggested(orgId, deptId, prevActId):
 
         else:
             cursor = conn.execute(
-                f"SELECT suggestedActId,score FROM activityScore WHERE prevActId={prevActId} ORDER BY score desc LIMIT 5")
+                f"SELECT suggestedActId,score FROM activityScore WHERE prevActId={prevActId} ORDER BY score desc LIMIT 5")###main suggestion
             res = cursor.fetchall()
             return Response(json.dumps(res), mimetype='application/json')
 
