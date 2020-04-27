@@ -10,3 +10,9 @@ module = login
 
 # CRUD
 baseUrl = "/api/login/"
+
+@module.route(baseUrl, methods = ['POST','GET'])
+def dologin():
+    if request.method == 'POST':
+        return Response(status=200)
+    return Response(status=200)
